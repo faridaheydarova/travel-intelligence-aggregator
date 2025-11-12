@@ -1,3 +1,9 @@
 spring:
   application:
     name: Travel Intelligence Aggregator
+
+
+  app:
+    openmeteo:
+      geo-url: https://geocoding-api.open-meteo.com/v1/search
+      weather-url: https://api.open-meteo.com/v1/forecast
