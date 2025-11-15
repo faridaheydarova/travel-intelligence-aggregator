@@ -3,6 +3,7 @@ package com.travel.tia.service;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import com.travel.tia.domain.GeoPoint;
+import com.travel.tia.exception.GeoNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -19,7 +20,12 @@ public class GeoClient {
                 .retrieve()
                 .bodyToMono(JsonNode.class)
                 .map(json -> {
-                    var r = json.path("results").get(0);
+                    JsonNode results=json.path("results");
+                    if(!results.isArray() || results.isEmpty()){
+                        throw new GeoNotFoundException("Location not found for query: " + query);
+                    }
+                    JsonNode r = results.get(0);
+
                     return new GeoPoint(
                             r.path("latitude").asDouble(),
                             r.path("longitude").asDouble(),
