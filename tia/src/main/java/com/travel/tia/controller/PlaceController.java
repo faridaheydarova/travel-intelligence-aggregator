@@ -1,5 +1,7 @@
 package com.travel.tia.controller;
 
+import com.travel.tia.domain.PlaceOverview;
+import com.travel.tia.service.AggregatorService;
 import com.travel.tia.service.GeoClient;
 import com.travel.tia.service.WeatherClient;
 import lombok.RequiredArgsConstructor;
@@ -15,17 +17,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("api/v1/places")
 public class PlaceController {
-    private  final GeoClient geoClient;
-    private final WeatherClient weatherClient;
+  private final AggregatorService agg;
 
     @GetMapping("/lookup")
-    public Mono<Map<String, Object>> lookup(@RequestParam String query) {
-        return geoClient.resolve(query)
-                .flatMap(geo -> weatherClient.getWeather(geo.lat(), geo.lon())
-                        .map(weather -> Map.of(
-                                "query", query,
-                                "location", geo,
-                                "weather", weather
-                        )));
+    public Mono<PlaceOverview> lookup(@RequestParam String query) {
+        return agg.lookup(query);
     }
 }
