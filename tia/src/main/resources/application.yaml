@@ -7,3 +7,8 @@ spring:
     openmeteo:
       geo-url: https://geocoding-api.open-meteo.com/v1/search
       weather-url: https://api.open-meteo.com/v1/forecast
+
+logging:
+  level:
+    root: INFO
+    com.travel.tia: DEBUG

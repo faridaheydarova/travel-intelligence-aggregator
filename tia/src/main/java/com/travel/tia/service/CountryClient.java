@@ -4,12 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.travel.tia.domain.CountryInfo;
 import io.swagger.v3.core.util.Json;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
-
+@Slf4j
 @Service
         @RequiredArgsConstructor
         public class CountryClient {
