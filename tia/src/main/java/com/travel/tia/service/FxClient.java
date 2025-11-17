@@ -14,12 +14,8 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-<<<<<<< Updated upstream
-public class FxClient {
-=======
 
         /*public class FxClient {  //api doesnt work because is not free
->>>>>>> Stashed changes
     public final WebClient webClient;
 
     public Mono<FxRates> latest(String base, String symbolsCsv){
@@ -36,8 +32,6 @@ public class FxClient {
     }
 
 
-<<<<<<< Updated upstream
-=======
 */
 
 
@@ -53,4 +47,3 @@ public class FxClient {
         return Mono.just(new FxRates(base, rates));
     }
 }
->>>>>>> Stashed changes

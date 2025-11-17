@@ -16,4 +16,23 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(body);
     }
+
+    @ExceptionHandler(WeatherServiceException.class)
+    public ResponseEntity<ErrorResponse> ex (WeatherServiceException ex){
+        ErrorResponse body=new ErrorResponse("WEATHER_ERROR", ex.getMessage());
+
+        return ResponseEntity
+                .status(502)
+                .body(body);
+    }
+
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> ex (Exception ex){
+        ErrorResponse body=new ErrorResponse("INTERNAL_ERROR", ex.getMessage());
+
+        return ResponseEntity
+                .status(500)
+                .body(body);
+    }
 }
